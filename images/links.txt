@@ -1,0 +1,3 @@
+https://stackoverflow.com/questions/42532511/how-to-use-specific-font-styles-with-css-from-google-fonts-ie-thin-extra-lig
+
+https://stackoverflow.com/questions/34228591/how-to-position-copyright-footer-into-the-center-bottom-of-the-footer

@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en" style="background: #12142c">
+
+<style type="text/css">
+
+
+      .faq-item{
+        margin-bottom: 40px;
+        margin-top: 40px;
+      }
+      .faq-body{
+        display: none;
+        margin-top: 30px;
+      }
+      .faq-wrapper{
+        width: 75%;
+        margin: 0 auto;
+      }
+      .faq-inner{
+        padding: 30px;;
+      }
+      .faq-plus{
+        float: right;
+        font-size: 1.4em;
+        line-height: 1em;
+        cursor: pointer;
+      }
+</style>
+    
+
+<head>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/links.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:1000,200,300,400" rel="stylesheet"> 
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="icon" type="image/png" href="images/logo.jpg">
+    <script type="text/javascript" src="cookies.js"></script> <!-- Include your cookies.js here -->
+    <title>YSJ eSports Society</title>
+
+</head>
+    
+
+    
+
+    
+<!-------------------------- Pages ---------------------------->
+    
+<header>
+ <!--<h1>York St John Esports Society</h1>-->
+
+ <header>
+  <div class="navbar">
+
+      <a href="login.html">Admin</a>
+      <a href="index.html">Home</a>
+      <a href="join.html">Signups</a>
+  </div>
+ </header>
+
+    <!-- Banner image -->
+    <img src="images/banner.jpg" alt="Banner Image" style="width: 100%;">
+
+
+    
+<!-------------------------- Body ----------------------------> 
+    
+<body>
+
+    <div>
+        <h1>York St John's student society for all things video games</h1>
+    </div>
+
+<!-- Slideshow container  from https://www.w3schools.com/howto/howto_js_slideshow.asp -->
+<div class="slideshow-container">
+
+  <!-- Full-width images with number and caption text -->
+  <div class="mySlides fade">
+    <div class="numbertext">1 / 3</div>
+    <img src="images/tryouts.png" style="width:100%">
+    <div class="text">Caption Text</div>
+  </div>
+
+  <div class="mySlides fade">
+    <div class="numbertext">2 / 3</div>
+    <img src="images/comm.jpg" style="width:100%">
+    <div class="text">Caption Two</div>
+  </div>
+
+  <div class="mySlides fade">
+    <div class="numbertext">3 / 3</div>
+    <img src="images/varsity.png" style="width:100%">
+    <div class="text">Caption Three</div>
+  </div>
+
+<br>
+
+<!-- The dots/circles -->
+<div style="text-align:center">
+  <span class="dot" data-slide="1"></span>
+  <span class="dot" data-slide="2"></span>
+  <span class="dot" data-slide="3"></span>
+</div>
+
+
+
+    <div>
+        <h2>We cater to both casual and competitive players!
+        </h2>
+    </div>
+    
+    <div class="image-container">
+      <img class="imag" width="150" height="100" src="images/Valorant.jpg">
+      <img class="imag" width="230" height="100" src="images/SSBU.jpg">
+      <img class="imag" width="200" height="100" src="images/Overwatch.jpg">
+      <img class="imag" width="150" height="140" src="images/Minecraft.jpg">
+      <img class="imag" width="120" height="120" src="images/RocketLeague.jpg">
+      <img class="imag" width="170" height="120" src="images/CSGO.jpg">
+  </div>
+    
+    
+
+
+
+
+<!-- FAQ  code adapted from https://reeteshghimire.com.np/2021/11/18/how-to-create-faq-page-using-html-and-css/-->
+    <div class="container">
+      <div class="row">
+        <div class="faq-wrapper">
+          <div class="header">
+            <h1>FAQs</h1>
+          </div>
+          <div class="faq-inner">
+            <div class="faq-item">
+              <h4>
+                How do I get involved?
+                <span class="faq-plus">&plus;</span>
+              </h4>
+              <div class="faq-body">
+                <h3>Go to the 'Join us' page! from there you can either join our discord or contact us via a quick form.</h3>
+              </div>
+            </div>
+            <hr>
+            <div class="faq-item">
+              <h4>
+                 What is there for casual players?
+                <span class="faq-plus">&plus;</span>
+              </h4>
+              <div class="faq-body">
+                <h3>We run weekly events for all kinds of community games, check the calendar for more!</h3>
+              </div>
+            </div>
+            <hr>
+            <div class="faq-item">
+              <h4>
+                What teams can I join?
+                <span class="faq-plus">&plus;</span>
+              </h4>
+              <div class="faq-body">
+                <h3>We are recruiting teams for all major eSports! go to the Join us page for more info.</h3>
+              </div>
+            </div>
+            <hr>
+            <div class="faq-item">
+              <h4>
+                How much does membership cost?
+                <span class="faq-plus">&plus;</span>
+              </h4>
+              <div class="faq-body">
+                <h3>Membership price is £16 for the year, or £8 for a semester.</h3>
+              </div>
+            </div>
+            <hr>
+            <div class="faq-item">
+              <h4>
+                Where are events held?
+                <span class="faq-plus">&plus;</span>
+              </h4>
+              <div class="faq-body">
+                <h3>Event location is different oper event, but most take place on our Discord. go to Join us to find out more.</h3>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript">
+      $(".faq-plus").on('click',function(){
+        $(this).parent().parent().find('.faq-body').slideToggle();
+      });
+    </script>
+    
+    
+    
+    
+    <div id="cookies">
+      <div class="cookiescontainer">
+        <div class="cookiessubcontainer">
+          <div class="cookies">
+            <p>Please accept our Cookies Policy  <a href="cookies.html">More Info</a></p>
+            <button id="cookies-btn">Accept</button>
+          </div> 
+        </div>
+      </div>
+    </div>
+    
+    
+    
+    
+    <script>
+      $(document).ready(function() {
+        var slideIndex = 1; // Initialize slideIndex to 1
+        showSlides(slideIndex); // Show the first slide
+
+        function showSlides(n) {
+          let i;
+          let slides = document.getElementsByClassName("mySlides");
+          let dots = document.getElementsByClassName("dot");
+          if (n > slides.length) {slideIndex = 1}
+          if (n < 1) {slideIndex = slides.length}
+          for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+          }
+          for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" active", "");
+          }
+          slides[n-1].style.display = "block";
+          dots[n-1].className += " active";
+        }
+
+        $(".dot").on('click', function() {
+          var index = $(this).index() + 1; // Get the index of the clicked dot
+          showSlides(index); // Call the currentSlide function
+        });
+
+      });
+  
+    </script>
+    
+    
+    
+    
+    
+</body>   
+
+<!-------------------------- footer ----------------------------> 
+    
+
+<footer>
+    
+    
+    <div style = "margin-top: 50px">
+    <p style = "text-align: center; color: white">© YSJGE 2024</p></div>
+        
+</footer>    
+
+
+</html>

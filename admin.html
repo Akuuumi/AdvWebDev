@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html style="background: #12142c">
+<head>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/links.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:1000,200,300,400" rel="stylesheet"> 
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="icon" type="image/png" href="images/logo.jpg">
+    <script type="text/javascript" src="cookies.js"></script> <!-- Include your cookies.js here -->
+    <title>YSJ eSports Society</title>
+
+</head>
+        <div class="navbar">
+            <a href="login.html">Admin</a>
+            <a href="index.html">Home</a>
+            <a href="join.html">Signups</a>
+        </div>
+    </header>
+        <!-- Banner image -->
+        <img src="images/banner.jpg" alt="Banner Image" style="width: 100%;">
+
+    <h1>Search Database</h1>
+
+</head>
+
+<body>
+
+
+    <!--Table Style-->
+    <style>
+        table, th, td { border: 1px solid white; border-collapse: collapse; }
+        td, th {padding: 10px;}
+    </style>
+
+
+<div class="searchBar">
+    <div class="dropContainer">
+        <form id="userEntryForm" method="get">
+            <h3>First Name</h3>
+            <input type="text" id="firstName" name="firstName" placeholder="Insert Name Here">
+        </form>
+    </div>
+
+    <div class = "dropContainer">
+        <h3>Choose a Team</h3>
+    
+        <select name="Teams" id="team" style="display: flex; justify-content: center; align-items: center; ">   
+            <option value="Any">Any</option>
+            <option value="Warriors">Warriors</option>
+            <option value="Guards">Guards</option>
+            <option value="Toast">Toast</option>
+            <option value="Wooper">Wooper</option>
+        </select>
+    </div>
+    <div class="dropContainer">
+        <button type="submit" id="searchBtn" value="Search" style="font: sans-serif; font-size: 20px; padding: 10px 20px;">
+            Search
+        </button>
+    </div>
+</div>
+
+
+
+
+
+    <!-- Placeholder for the API data -->
+    <h3 id="containerData" style="display: flex; justify-content: center; align-items: center; "></h3>
+
+
+    <!-- Script to call the API and update the page -->
+    <script>
+        $(document).ready(function() {
+    
+            document.getElementById("searchBtn").addEventListener("click", searchFunction);
+
+            function searchFunction() {
+
+    
+                // Get the selected team and the firstName input value
+                var team = $('#team').val();
+                var firstName = $('#firstName').val().trim();
+                console.log(team, firstName);
+    
+                // Determine the URL based on the conditions
+                if (team === 'Any' && firstName === '') {
+                    var url = 'http://localhost:5003/users.php/listAll';
+                } 
+                else if (team !== 'Any' && firstName === ''){
+                    var url = 'http://localhost:5003/users.php/teamSearch?team=' + encodeURIComponent(team);
+                }
+                else if (team == 'Any' && firstName !== ''){
+                    var url = 'http://localhost:5003/users.php/firstSearch?firstName=' + encodeURIComponent(firstName);
+                
+                }
+                else {
+                // Append both the selected team name and firstName as query parameters
+                    var url = 'http://localhost:5003/users.php/specificSearch?team=' + encodeURIComponent(team) + '&firstName=' + encodeURIComponent(firstName);
+                }
+
+                console.log(url);
+                
+                // Make the AJAX call with the determined URL
+                fetchData(url);
+            };
+    
+            // Function to make the AJAX call
+            function fetchData(url) {
+                $.ajax({
+                    url: url,
+                    type: 'GET',
+                    dataType: 'json', // Explicitly set the expected data type
+                    success: function(data) {
+                        if (data && data.length > 0) { // Check if data is not undefined and has at least one item
+                            // Clear the container
+                            $('#containerData').empty();
+                            
+                            // Create the table element
+                            let table = $('<table>');
+                            
+                            // Get the keys (column names) of the first object in the JSON data
+                            let cols = Object.keys(data[0]);
+                            
+                            // Create the header element
+                            let thead = $('<thead>');
+                            let tr = $('<tr>');
+                            
+                            // Loop through the column names and create header cells
+                            $.each(cols, function(i, item){
+                                let th = $('<th>');
+                                th.text(item); // Set the column name as the text of the header cell
+                                tr.append(th); // Append the header cell to the header row
+                            });
+                            thead.append(tr); // Append the header row to the header
+                            table.append(thead); // Append the header to the table
+                            
+                            // Loop through the JSON data and create table rows
+                            $.each(data, function(i, item){
+                                let tr = $('<tr>');
+                                
+                                // Get the values of the current object in the JSON data
+                                let vals = Object.values(item);
+                                
+                                // Loop through the values and create table cells
+                                $.each(vals, function(i, elem) {
+                                    let td = $('<td>');
+                                    td.text(elem); // Set the value as the text of the table cell
+                                    tr.append(td); // Append the table cell to the table row
+                                });
+                                table.append(tr); // Append the table row to the table
+                            });
+                            
+                            // Append the table to the container element
+                            $('#containerData').append(table);
+                        } else {
+                            // Handle the case where data is undefined or null
+                            $('#containerData').text('No data available');
+                        }
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        console.error("Error fetching data: " + textStatus + ", " + errorThrown);
+                    }
+                });
+            }
+        });
+    </script>
+
+<h1 style="margin-top:50px">Edit Database</h1>
+
+<div id="userEntry" style="display: flex; align-items:start; ">
+    <form id="userEditForm" method="put">
+        <label for="id">ID</label>
+        <input type="text" id="id" name="id" placeholder="id">
+        <label for="firstName">First Name</label>
+        <input type="text" id="efirstName" name="firstName" placeholder="Insert Name Here">
+        <label for="lastName">Last Name</label>
+        <input type="text" id="lastName" name="lastName" placeholder="Insert Surname Here">
+        <label for="game">Game</label>
+        <input type="text" id="game" name="game" placeholder="Insert Game Here">
+        <label for="teamName">Team Name</label>
+        <input type="text" id="teamName" name="teamName" placeholder="Insert Team Name Here">
+        <input type="submit" id="editBtn" value="Edit">
+        <input type="submit" id="deleteBtn" value="Delete">
+        
+    </form>
+</div>
+
+
+
+
+
+
+<script>
+console.log("JS LOAD");
+$(document).ready(function() {
+    // Listen for the form submission
+    $('#editBtn').click(function(event) {
+        event.preventDefault(); // Prevent the form from submitting normally
+
+        // Collect the form data
+        var formData = {
+            id: $('#id').val(),
+            firstName: $('#efirstName').val(),
+            lastName: $('#lastName').val(),
+            game: $('#game').val(),
+            teamName: $('#teamName').val()
+        };
+
+        // Send the data to your API endpoint
+        $.ajax({
+            url: 'http://localhost:5003/users.php/userEdit',
+            type: 'PUT',
+            data: formData,
+            success: function(response) {
+                console.log('Data edited successfully:', response);
+                $('#userEditForm')[0].reset();
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                console.error("Error editing data: " + textStatus + ", " + errorThrown);
+            }
+        });
+    });
+        // Listen for the form submission
+    $('#deleteBtn').click(function(event) {
+    event.preventDefault(); // Prevent the form from submitting normally
+
+        // Collect the form data
+        var formData = {
+            id: $('#id').val(),
+        };
+
+        // Send the data to your API endpoint
+        $.ajax({
+            url: 'http://localhost:5003/users.php/userDelete',
+            type: 'DELETE',
+            data: formData,
+            success: function(response) {
+                console.log('Data edited successfully:', response);
+                $('#userEditForm')[0].reset();
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                console.error("Error editing data: " + textStatus + ", " + errorThrown);
+            }
+        });
+    });
+});
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+<div id="cookies">
+    <div class="cookiescontainer">
+      <div class="cookiessubcontainer">
+        <div class="cookies">
+          <p>Please accept our Cookies Policy  <a href="cookies.html">More Info</a></p>
+          <button id="cookies-btn">Accept</button>
+        </div> 
+      </div>
+    </div>
+  </div>
+
+<footer>
+    <div style="margin-top: 50px">
+        <p style="text-align: center; color: white">© YSJGE 2024</p>
+    </div>
+</footer>
+
+</body>
+
+</html>
+

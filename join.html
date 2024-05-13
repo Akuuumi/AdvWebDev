@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html style="background: #12142c">
+
+<style type="text/css"></style>
+    
+
+<head>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/links.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:1000,200,300,400" rel="stylesheet"> 
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="icon" type="image/jpg" href="images/logo.jpg">
+    <script type="text/javascript" src="cookies.js"></script> <!-- Include your cookies.js here -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <script type="module" src="index.js"></script>
+
+    <title>YSJ eSports Society</title>
+
+</head>
+     
+<!-------------------------- Pages ---------------------------->
+    
+<header>
+    <div class="navbar">
+  
+        <a href="login.html">Admin</a>
+        <a href="index.html">Home</a>
+        <a href="join.html">Signups</a>
+    </div>
+   </header>
+  
+    <!-- Banner image -->
+    <img src="images/banner.jpg" alt="Banner Image" style="width: 100%;">
+    
+   
+<body>
+    
+  <div>
+        <h1>Join us on Discord! </h1> <h1><a href=https://discord.com/ > Here</a></h1>
+    </div>
+   
+       
+
+
+
+
+<h2>We are based here:</h2>
+<!--The div element for the map -->
+<div id="map"></div>
+
+<!-- prettier-ignore -->
+<script>
+    (g => {
+        var h, a, k, p = "The Google Maps JavaScript API", c = "google", l = "importLibrary", q = "__ib__", m = document, b = window;
+        b = b[c] || (b[c] = {});
+        var d = b.maps || (b.maps = {}), r = new Set, e = new URLSearchParams, u = () => h || (h = new Promise(async (f, n) => {
+            await (a = m.createElement("script"));
+            e.set("libraries", [...r] + "");
+            for (k in g) e.set(k.replace(/[A-Z]/g, t => "_" + t[0].toLowerCase()), g[k]);
+            e.set("callback", c + ".maps." + q);
+            a.src = `https://maps.${c}apis.com/maps/api/js?` + e;
+            d[q] = f;
+            a.onerror = () => h = n(Error(p + " could not load."));
+            a.nonce = m.querySelector("script[nonce]")?.nonce || "";
+            m.head.append(a)
+        }));
+        d[l]? console.warn(p + " only loads once. Ignoring:", g) : d[l] = (f,...n) => r.add(f) && u().then(() => d[l](f,...n))
+    })({
+        key: "AIzaSyDq_zgG6m8g07CyewncWoS9Nxu4M1fVLJo", // Replace YOUR_ACTUAL_API_KEY_HERE with your actual API key
+        v: "weekly"
+    });
+</script>
+
+<script>// Initialize and add the map
+    let map;
+    
+    async function initMap() {
+      // The location of Uluru
+      const position = { lat: 53.96622261565063, lng: -1.0829727615938838 };
+      // Request needed libraries.
+      //@ts-ignore
+      const { Map } = await google.maps.importLibrary("maps");
+      const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
+    
+      // The map, centered at Uluru
+      map = new Map(document.getElementById("map"), {
+        zoom: 4,
+        center: position,
+        mapId: "DEMO_MAP_ID",
+      });
+    
+      // The marker, positioned at Uluru
+      const marker = new AdvancedMarkerElement({
+        map: map,
+        position: position,
+        title: "Uluru",
+      });
+    }
+    
+    initMap();
+</script>
+
+
+
+
+
+
+<!-----------------NewsLetter code adapted from https://www.w3schools.com/howto/howto_css_contact_form.asp----------------->
+    
+<div>
+    <h1>Sign up to a team!</h1>
+</div>   
+
+
+
+<div id="userEntry" style="display: flex; align-items:start; ">
+    <form id="userEntryForm" method="post">
+        <label for="firstName">Firstname</label>
+        <input type="text" id="firstName" name="firstName" placeholder="Insert Name Here">
+        <label for="lastName">Last Name</label>
+        <input type="text" id="lastName" name="lastName" placeholder="Insert Surname Here">
+        <label for="game">Game</label>
+        <input type="text" id="game" name="game" placeholder="Insert Game Here">
+        <label for="teamName">Team Name</label>
+        <input type="text" id="teamName" name="teamName" placeholder="Insert Team Name Here">
+        <input type="submit" id="submitBtn" value="Submit">
+    </form>
+</div>
+
+
+
+
+
+
+<script>
+$(document).ready(function() {
+    // Listen for the form submission
+    $('#userEntryForm').on('submit', function(event) {
+        event.preventDefault(); // Prevent the form from submitting normally
+
+        // Collect the form data
+        var formData = $(this).serialize();
+
+        // Send the data to your API endpoint
+        $.ajax({
+            url: 'http://localhost:5003/users.php/userEntry',
+            type: 'POST',
+            data: formData,
+            success: function(response) {
+                console.log('Data submitted successfully:', response);
+                // You can clear the form or show a success message here
+                $('#userEntryForm')[0].reset();
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                console.error("Error submitting data: " + textStatus + ", " + errorThrown);
+            }
+        });
+    });
+});
+</script>
+
+
+
+
+
+
+
+
+
+    </body>
+    
+
+<footer>
+    
+    
+    <div style = "margin-top: 50px">
+    <p style = "text-align: center; color: white">© YSJVGES 2022</p></div>
+        
+</footer>    
+    
+    
